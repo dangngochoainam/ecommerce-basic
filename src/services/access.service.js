@@ -4,12 +4,14 @@ const shopModel = require('../models/shop.model');
 const bycrypt = require('bcrypt');
 const crypto = require('crypto');
 const KeyTokenService = require('./keyToken.service');
-const { createTokenPair } = require('../auth/authUtils');
+const { createTokenPair, verifyJWT } = require('../auth/authUtils');
 const { getInfoData } = require('../utils');
 const {
   BadRequestError,
   ConflictRequestError,
   AuthFailureError,
+  ForbiddenError,
+  NotFoundError,
 } = require('../core/error.response');
 const { findByEmail } = require('./shop.service');
 
@@ -21,6 +23,47 @@ const RoleShop = {
 };
 
 class AccessService {
+  static handleRefreshToken = async (refreshToken) => {
+    const isTokenUsed = await KeyTokenService.findByRefreshTokenUsed(
+      refreshToken
+    );
+    if (isTokenUsed) {
+      const { userId } = verifyJWT(refreshToken, isTokenUsed.privateKey);
+
+      await KeyTokenService.deleteKeyStoreByUserId(userId);
+      throw new ForbiddenError('Some thing wrong happened ! Please, relogin.');
+    }
+
+    const keyToken = await KeyTokenService.findByRefreshToken(refreshToken);
+    if (!keyToken) throw new AuthFailureError('Shop is not registered');
+
+    const { userId, email } = verifyJWT(refreshToken, keyToken.privateKey);
+    const shop = await findByEmail({ email });
+    if (!shop) {
+      throw new AuthFailureError('Shop is not registered');
+    }
+
+    const tokens = await createTokenPair(
+      { userId, email },
+      keyToken.publicKey,
+      keyToken.privateKey
+    );
+
+    await keyToken.updateOne({
+      $set: {
+        refreshToken: tokens.refreshToken,
+      },
+      $addToSet: {
+        refreshTokensUsed: refreshToken, // đã được sử dụng để tạo cặp token mới
+      },
+    });
+
+    return {
+      user: { userId, email },
+      tokens,
+    };
+  };
+
   static logout = async (keyStore) => {
     return await KeyTokenService.deleteKeyStoreById(keyStore._id);
   };
