@@ -6,14 +6,13 @@ const { asyncHandler } = require('../helpers/asyncHandle');
 const { NotFoundError, AuthFailureError } = require('../core/error.response');
 const KeyTokenService = require('../services/keyToken.service');
 
-
 const createTokenPair = async (payload, publicKey, privateKey) => {
   try {
-    const accessToken = await JWT.sign(payload, publicKey, {
+    const accessToken = JWT.sign(payload, publicKey, {
       expiresIn: '2 days',
     });
 
-    const refreshToken = await JWT.sign(payload, privateKey, {
+    const refreshToken = JWT.sign(payload, privateKey, {
       expiresIn: '7 days',
     });
 
@@ -21,7 +20,7 @@ const createTokenPair = async (payload, publicKey, privateKey) => {
       if (err) {
         console.log(`error verify::${err}`);
       } else {
-        console.log(`decode verify::$${decode}`);
+        console.log(`decode verify::`, decode);
       }
     });
 
@@ -57,7 +56,10 @@ const authentication = asyncHandler(async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
+    throw new AuthFailureError('Invalid request');
   }
 });
 
-module.exports = { createTokenPair, authentication };
+const verifyJWT = (token, keySecret) => JWT.verify(token, keySecret);
+
+module.exports = { createTokenPair, authentication, verifyJWT };

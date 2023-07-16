@@ -19,7 +19,7 @@ class KeyTokenService {
       // return tokens ? tokens.publicKey : null;
 
       // level xxx
-      const filter = { user: userId },
+      const filter = { user: new ObjectId(userId) },
         update = { publicKey, privateKey, refreshTokensUsed: [], refreshToken },
         options = { upsert: true, new: true };
       const tokens = await keytokenModel.findOneAndUpdate(
@@ -42,6 +42,16 @@ class KeyTokenService {
   static deleteKeyStoreById = async (_id) => {
     return await keytokenModel.deleteOne({ _id: new ObjectId(_id) });
   };
+
+  static deleteKeyStoreByUserId = async (userId) => {
+    return await keytokenModel.deleteMany({ user: new ObjectId(userId) });
+  };
+
+  static findByRefreshTokenUsed = async (refreshToken) =>
+    await keytokenModel.findOne({ refreshTokensUsed: refreshToken }).lean();
+
+  static findByRefreshToken = async (refreshToken) =>
+    await keytokenModel.findOne({ refreshToken });
 }
 
 module.exports = KeyTokenService;
