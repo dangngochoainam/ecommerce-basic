@@ -64,6 +64,43 @@ class AccessService {
     };
   };
 
+  static handleRefreshTokenV2 = async ({ refreshToken, user, keyStore }) => {
+    const { userId, email } = user;
+
+    if (keyStore.refreshTokensUsed.includes(refreshToken)) {
+      await KeyTokenService.deleteKeyStoreByUserId(userId);
+      throw new ForbiddenError('Some thing wrong happened ! Please, relogin.');
+    }
+
+    if (keyStore.refreshToken !== refreshToken)
+      throw new AuthFailureError('Shop is not registered');
+
+    const shop = await findByEmail({ email });
+    if (!shop) {
+      throw new AuthFailureError('Shop is not registered');
+    }
+
+    const tokens = await createTokenPair(
+      { userId, email },
+      keyStore.publicKey,
+      keyStore.privateKey
+    );
+
+    await keyStore.updateOne({
+      $set: {
+        refreshToken: tokens.refreshToken,
+      },
+      $addToSet: {
+        refreshTokensUsed: refreshToken, // đã được sử dụng để tạo cặp token mới
+      },
+    });
+
+    return {
+      user: { userId, email },
+      tokens,
+    };
+  };
+
   static logout = async (keyStore) => {
     return await KeyTokenService.deleteKeyStoreById(keyStore._id);
   };
