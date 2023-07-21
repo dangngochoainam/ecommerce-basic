@@ -9,11 +9,11 @@ const KeyTokenService = require('../services/keyToken.service');
 const createTokenPair = async (payload, publicKey, privateKey) => {
   try {
     const accessToken = JWT.sign(payload, publicKey, {
-      expiresIn: '2 days',
+      // expiresIn: '2 days',
     });
 
     const refreshToken = JWT.sign(payload, privateKey, {
-      expiresIn: '7 days',
+      // expiresIn: '7 days',
     });
 
     JWT.verify(accessToken, publicKey, (err, decode) => {
@@ -91,6 +91,7 @@ const authenticationV2 = asyncHandler(async (req, res, next) => {
     if (decode.userId != userId) throw new AuthFailureError('Invalid request');
 
     req.keyStore = keyStore;
+    req.user = decode;
     return next();
   } catch (error) {
     console.log(error);
