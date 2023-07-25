@@ -8,6 +8,14 @@ const {
   electronic,
   furniture,
 } = require('../models/product.model');
+const {
+  findAllDraftsForShop,
+  publishProductByShop,
+  getAllPublishForProduct,
+  findAllPublishForProduct,
+  unPublishProductByShop,
+  searchProduct,
+} = require('../models/repositories/product.repo');
 
 class ProductFactory {
   static productRegisterd = {};
@@ -23,6 +31,36 @@ class ProductFactory {
 
     return new productClass(payload).createProduct();
   }
+
+  /**
+   *
+   * @desc Get all draft for shop
+   * @param {Number} limit
+   * @param {Number} skip
+   * @param {String} product_shop
+   * @return {JSON}
+   */
+  static async getAllDraftForProduct({ product_shop, limit = 50, skip = 0 }) {
+    const query = { product_shop, isDraft: true };
+    return await findAllDraftsForShop({ query, limit, skip });
+  }
+
+  static async getAllPublishForProduct({ product_shop, limit = 50, skip = 0 }) {
+    const query = { product_shop, isPublished: true };
+    return await findAllPublishForProduct({ query, limit, skip });
+  }
+
+  static async publishProductByShop({ product_shop, product_id }) {
+    return await publishProductByShop({ product_shop, product_id });
+  }
+
+  static async unPublishProductByShop({ product_shop, product_id }) {
+    return await unPublishProductByShop({ product_shop, product_id });
+  }
+
+  static async searchProducts({ keySearch }) {
+    return await searchProduct({ keySearch });
+  }
 }
 
 class BaseProduct {
@@ -35,6 +73,11 @@ class BaseProduct {
     product_type,
     product_shop,
     product_attributes,
+    product_ratingsAverage,
+    product_slug,
+    product_variations,
+    isDraft,
+    isPublished,
   }) {
     this.product_name = product_name;
     this.product_thumb = product_thumb;
@@ -44,6 +87,11 @@ class BaseProduct {
     this.product_type = product_type;
     this.product_attributes = product_attributes;
     this.product_shop = product_shop;
+    this.product_slug = product_slug;
+    this.product_variations = product_variations;
+    this.product_ratingsAverage = product_ratingsAverage;
+    this.isDraft = isDraft;
+    this.isPublished = isPublished;
   }
 
   async createProduct(productId) {
