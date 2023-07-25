@@ -4,7 +4,27 @@ const { asyncHandler } = require('../../helpers/asyncHandle');
 
 const router = require('express').Router();
 
+router.get(
+  '/search/:keySearch',
+  asyncHandler(ProductController.getListProductSearch)
+);
 router.use(authenticationV2);
+// POST
 router.post('', asyncHandler(ProductController.create));
+router.put(
+  '/publish/:product_id',
+  asyncHandler(ProductController.publishProductForShop)
+);
+router.put(
+  '/unpublish/:product_id',
+  asyncHandler(ProductController.unPublishProductForShop)
+);
+
+// QUERY
+router.get('/drafts/all', asyncHandler(ProductController.getAllDraftsForShop));
+router.get(
+  '/published/all',
+  asyncHandler(ProductController.getAllPublishForShop)
+);
 
 module.exports = router;
