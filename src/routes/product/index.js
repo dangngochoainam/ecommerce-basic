@@ -4,6 +4,8 @@ const { asyncHandler } = require('../../helpers/asyncHandle');
 
 const router = require('express').Router();
 
+router.get('', asyncHandler(ProductController.getAllProduct));
+router.get('/:id', asyncHandler(ProductController.getProductDetail));
 router.get(
   '/search/:keySearch',
   asyncHandler(ProductController.getListProductSearch)
