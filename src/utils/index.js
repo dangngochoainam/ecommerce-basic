@@ -6,4 +6,12 @@ const getInfoData = ({ fields = [], object = {} }) => {
   return _.pick(object, fields);
 };
 
-module.exports = { getInfoData };
+const getSelectData = (listSelect = []) => {
+  return Object.fromEntries(listSelect.map((ele) => [ele, 1]));
+};
+
+const getUnSelectData = (listSelect = []) => {
+  return Object.fromEntries(listSelect.map((ele) => [ele, 0]));
+};
+
+module.exports = { getInfoData, getSelectData, getUnSelectData };
