@@ -5,7 +5,7 @@ const { asyncHandler } = require('../../helpers/asyncHandle');
 const router = require('express').Router();
 
 router.get('', asyncHandler(ProductController.getAllProduct));
-router.get('/:id', asyncHandler(ProductController.getProductDetail));
+router.get('/:product_id', asyncHandler(ProductController.getProductDetail));
 router.get(
   '/search/:keySearch',
   asyncHandler(ProductController.getListProductSearch)
@@ -13,6 +13,7 @@ router.get(
 router.use(authenticationV2);
 // POST
 router.post('', asyncHandler(ProductController.create));
+router.patch('/:productId', asyncHandler(ProductController.update));
 router.put(
   '/publish/:product_id',
   asyncHandler(ProductController.publishProductForShop)

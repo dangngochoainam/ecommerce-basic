@@ -98,6 +98,28 @@ const findProductDetail = async ({ product_id, select }) => {
   return results;
 };
 
+const findByIdAndUpdate = async ({
+  productId,
+  productShop,
+  model,
+  bodyUpdate,
+  isNew = true,
+}) => {
+  const result = await model.findOneAndUpdate(
+    {
+      _id: productId,
+      product_shop: productShop,
+    },
+    bodyUpdate,
+    {
+      new: isNew,
+      returnDocument: 'after',
+    }
+  );
+
+  return result;
+};
+
 module.exports = {
   findAllDraftsForShop,
   publishProductByShop,
@@ -106,4 +128,5 @@ module.exports = {
   searchProduct,
   findAllProduct,
   findProductDetail,
+  findByIdAndUpdate,
 };

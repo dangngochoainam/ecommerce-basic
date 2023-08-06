@@ -1,5 +1,6 @@
 'use strict';
 
+const { Types } = require('mongoose');
 const { ProductType } = require('../constanst/product.constants');
 const { BadRequestError } = require('../core/error.response');
 const {
@@ -17,7 +18,12 @@ const {
   searchProduct,
   findAllProduct,
   findProductDetail,
+  findByIdAndUpdate,
 } = require('../models/repositories/product.repo');
+const {
+  removeNullOrUndefineValue,
+  updateNestedObjectParser,
+} = require('../utils');
 
 class ProductFactory {
   static productRegisterd = {};
@@ -32,6 +38,18 @@ class ProductFactory {
     if (!productClass) throw new BadRequestError('Invalid request :: ', type);
 
     return new productClass(payload).createProduct();
+  }
+
+  static updateProduct(type, productId, productShop, payload) {
+    const productClass = ProductFactory.productRegisterd[type];
+
+    if (!productClass) throw new BadRequestError('Invalid request :: ', type);
+
+    return new productClass({
+      ...payload,
+      product_id: new Types.ObjectId(productId),
+      product_shop: new Types.ObjectId(productShop),
+    }).updateProduct(new Types.ObjectId(productId));
   }
 
   /**
@@ -113,6 +131,15 @@ class BaseProduct {
   async createProduct(productId) {
     return await baseProduct.create({ ...this, _id: productId });
   }
+
+  async updateProduct(productId, bodyUpdate, productShop) {
+    return await findByIdAndUpdate({
+      productId,
+      productShop: productShop,
+      model: baseProduct,
+      bodyUpdate: bodyUpdate,
+    });
+  }
 }
 
 class Clothing extends BaseProduct {
@@ -155,6 +182,27 @@ class Furniture extends BaseProduct {
     const newProduct = await super.createProduct(newFurniture._id);
     if (!newProduct) throw new BadRequestError('Create new Product error');
     return newProduct;
+  }
+
+  async updateProduct(productId) {
+    const bodyUpdate = this;
+
+    if (bodyUpdate.product_attributes) {
+      await findByIdAndUpdate({
+        productId,
+        productShop: this.product_shop,
+        model: furniture,
+        bodyUpdate: removeNullOrUndefineValue(bodyUpdate.product_attributes),
+      });
+    }
+
+    const baseProductUpdate = await super.updateProduct(
+      productId,
+      updateNestedObjectParser(removeNullOrUndefineValue(bodyUpdate)),
+      this.product_shop
+    );
+
+    return baseProductUpdate;
   }
 }
 
