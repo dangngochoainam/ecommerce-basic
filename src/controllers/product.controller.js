@@ -23,6 +23,18 @@ class ProductController {
     }).send(res);
   };
 
+  update = async (req, res, next) => {
+    return new SuccessResponse({
+      message: 'Update product successfully',
+      metadata: await ProductFactoryV2.updateProduct(
+        req.body.product_type,
+        req.params.productId,
+        req.user.userId,
+        req.body
+      ),
+    }).send(res);
+  };
+
   getAllDraftsForShop = async (req, res, next) => {
     return new SuccessResponse({
       message: 'Get list draft product successfully',
