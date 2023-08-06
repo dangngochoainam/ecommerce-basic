@@ -1,0 +1,383 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "TipJS-Ecommerce",
+    "dateExported": "2023-08-06T12:55:46.191Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "0ccaed73-6b54-4fd3-8696-4f763de8d27c",
+            "colId": "80696ad5-5f38-42af-aeb4-5fa4ec122054",
+            "containerId": "",
+            "name": "Signup",
+            "url": "http://localhost:3000/v1/api/shop/signup",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-07-15T02:14:07.540Z",
+            "modified": "2023-07-15T12:59:46.167Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "ac37b405408e6646067cb230bbc729ec800583f106c000397249e4b72046fae627cda5102c865040ac12a0f35f29819b6709bab0cfaeb1f3f09f5a1992f90fc1"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test shop\",\n  \"email\": \"namdnh0606@gmail.com\",\n  \"password\": \"Abc@123456\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "268f7513-9012-4cab-b242-353babebd895",
+            "colId": "80696ad5-5f38-42af-aeb4-5fa4ec122054",
+            "containerId": "",
+            "name": "Login",
+            "url": "http://localhost:3000/v1/api/shop/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-07-15T14:47:39.690Z",
+            "modified": "2023-07-20T17:05:58.007Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "ac37b405408e6646067cb230bbc729ec800583f106c000397249e4b72046fae627cda5102c865040ac12a0f35f29819b6709bab0cfaeb1f3f09f5a1992f90fc1"
+                },
+                {
+                    "name": "x-rtoken-id",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjg5ODcyMzYwLCJleHAiOjE2OTA0NzcxNjB9.Ss-iXIiwCi7K4Tl7euvWoWOT6wn-Ir_QUKsPycjqhHw",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n \n  \"email\": \"namdnh0602@gmail.com\",\n  \"password\": \"Abc@123456\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a38745df-fc81-4090-ad7b-1628cffb3de1",
+            "colId": "80696ad5-5f38-42af-aeb4-5fa4ec122054",
+            "containerId": "",
+            "name": "Logout",
+            "url": "http://localhost:3000/v1/api/shop/logout",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-07-16T03:15:45.692Z",
+            "modified": "2023-07-16T03:15:45.692Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "ac37b405408e6646067cb230bbc729ec800583f106c000397249e4b72046fae627cda5102c865040ac12a0f35f29819b6709bab0cfaeb1f3f09f5a1992f90fc1"
+                },
+                {
+                    "name": "x-client-id",
+                    "value": "64b2041c9907f2ffefaa362f"
+                },
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjg5NDc3MDY5LCJleHAiOjE2ODk2NDk4Njl9.zs0deWNKVgSxWKaqDCtV017hmIT6ZRweBBx3AZyUwM0"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "dd8104a1-e557-4394-8a9e-4671cfa26b5a",
+            "colId": "80696ad5-5f38-42af-aeb4-5fa4ec122054",
+            "containerId": "",
+            "name": "Create Product",
+            "url": "http://localhost:3000/v1/api/product/",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-07-19T15:22:49.170Z",
+            "modified": "2023-08-06T12:54:36.666Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "ac37b405408e6646067cb230bbc729ec800583f106c000397249e4b72046fae627cda5102c865040ac12a0f35f29819b6709bab0cfaeb1f3f09f5a1992f90fc1"
+                },
+                {
+                    "name": "x-client-id",
+                    "value": "64b2041c9907f2ffefaa362f"
+                },
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjkxMzI2NDU0fQ.Q4oAEXTGu9TlfntYz7W2Cx8-00VJY11eb-F9K4iwYX8"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"product_name\": \"Furniture nè 3\",\n  \"product_thumb\": \"Furniture 3\",\n  \"product_description\": \"Furniture 3\",\n  \"product_price\": 12,\n  \"product_quantity\": 109,\n  \"product_type\": \"Furniture\",\n  \"product_attributes\": {\n    \"brand\": \"Levi s Furniture 3\",\n    \"size\": \"L Furniture 3\",\n    \"material\": \"Denim  Furniture 3\"\n  },\n  \"product_ratingsAverage\": 3,\n  \"product_variations\": [\n    \"Yellow\"\n  ]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "fde35f50-c08d-4082-a0d2-8349002c5846",
+            "colId": "80696ad5-5f38-42af-aeb4-5fa4ec122054",
+            "containerId": "",
+            "name": "RefreshToken",
+            "url": "http://localhost:3000/v1/api/shop/refreshToken",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-07-21T13:08:20.348Z",
+            "modified": "2023-07-21T13:08:26.626Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "ac37b405408e6646067cb230bbc729ec800583f106c000397249e4b72046fae627cda5102c865040ac12a0f35f29819b6709bab0cfaeb1f3f09f5a1992f90fc1"
+                },
+                {
+                    "name": "x-client-id",
+                    "value": "64b2041c9907f2ffefaa362f"
+                },
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjg5OTQ0NTUwLCJleHAiOjE2OTAxMTczNTB9.AB0dOn5LUrErR8oMflBGiBV5B-bMuKhJeVlL0h4y6y8",
+                    "isDisabled": true
+                },
+                {
+                    "name": "x-rtoken-id",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjg5OTQ0NzM4LCJleHAiOjE2OTA1NDk1Mzh9.3KsN5oH0LbQ8Jqf1c2_nsKtfuWbA3RyMBhf5pszTjF4"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "f086c991-8da2-48fe-8c5b-f88a24196da2",
+            "colId": "80696ad5-5f38-42af-aeb4-5fa4ec122054",
+            "containerId": "",
+            "name": "Get list all draft for shop",
+            "url": "http://localhost:3000/v1/api/product/drafts/all",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-07-24T14:01:20.741Z",
+            "modified": "2023-07-24T14:01:20.741Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "ac37b405408e6646067cb230bbc729ec800583f106c000397249e4b72046fae627cda5102c865040ac12a0f35f29819b6709bab0cfaeb1f3f09f5a1992f90fc1"
+                },
+                {
+                    "name": "x-client-id",
+                    "value": "64b2041c9907f2ffefaa362f"
+                },
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjkwMjA3MTQzfQ.8Fox-D8cJ8emScId5KI8Dq0HLVETinbzeG7DAFJgG6I"
+                },
+                {
+                    "name": "x-rtoken-id",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjg5OTQ0NzM4LCJleHAiOjE2OTA1NDk1Mzh9.3KsN5oH0LbQ8Jqf1c2_nsKtfuWbA3RyMBhf5pszTjF4",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "8bd978e8-43fe-49f2-ac9b-46b81b4e9167",
+            "colId": "80696ad5-5f38-42af-aeb4-5fa4ec122054",
+            "containerId": "",
+            "name": "Get published product by shop",
+            "url": "http://localhost:3000/v1/api/product/published/all",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-07-25T00:31:08.146Z",
+            "modified": "2023-07-30T02:14:37.752Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "ac37b405408e6646067cb230bbc729ec800583f106c000397249e4b72046fae627cda5102c865040ac12a0f35f29819b6709bab0cfaeb1f3f09f5a1992f90fc1"
+                },
+                {
+                    "name": "x-client-id",
+                    "value": "64b2041c9907f2ffefaa362f"
+                },
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjkwNjgzMjIwfQ.eOAUT9IhPfFCpmPIF4ODVFqWhIvuPBCB38pt1YmAUKE"
+                },
+                {
+                    "name": "x-rtoken-id",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjg5OTQ0NzM4LCJleHAiOjE2OTA1NDk1Mzh9.3KsN5oH0LbQ8Jqf1c2_nsKtfuWbA3RyMBhf5pszTjF4",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "93bf243e-6014-4cca-a8a8-352ed346499b",
+            "colId": "80696ad5-5f38-42af-aeb4-5fa4ec122054",
+            "containerId": "",
+            "name": "Publish product by shop",
+            "url": "http://localhost:3000/v1/api/product/publish/64c5c762492ff2146b190d38",
+            "method": "PUT",
+            "sortNum": 80000,
+            "created": "2023-07-25T00:39:54.239Z",
+            "modified": "2023-07-30T02:15:42.070Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "ac37b405408e6646067cb230bbc729ec800583f106c000397249e4b72046fae627cda5102c865040ac12a0f35f29819b6709bab0cfaeb1f3f09f5a1992f90fc1"
+                },
+                {
+                    "name": "x-client-id",
+                    "value": "64b2041c9907f2ffefaa362f"
+                },
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjkwNjgzMjIwfQ.eOAUT9IhPfFCpmPIF4ODVFqWhIvuPBCB38pt1YmAUKE"
+                },
+                {
+                    "name": "x-rtoken-id",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjg5OTQ0NzM4LCJleHAiOjE2OTA1NDk1Mzh9.3KsN5oH0LbQ8Jqf1c2_nsKtfuWbA3RyMBhf5pszTjF4",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "48e8ebac-95f0-4abe-8af4-17f8fb89b6cc",
+            "colId": "80696ad5-5f38-42af-aeb4-5fa4ec122054",
+            "containerId": "",
+            "name": "Unpublish product by shop",
+            "url": "http://localhost:3000/v1/api/product/unpublish/64bbadeac421d45e10f32e45",
+            "method": "PUT",
+            "sortNum": 90000,
+            "created": "2023-07-25T00:44:26.669Z",
+            "modified": "2023-07-25T00:44:26.669Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "ac37b405408e6646067cb230bbc729ec800583f106c000397249e4b72046fae627cda5102c865040ac12a0f35f29819b6709bab0cfaeb1f3f09f5a1992f90fc1"
+                },
+                {
+                    "name": "x-client-id",
+                    "value": "64b2041c9907f2ffefaa362f"
+                },
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjkwMjA3MTQzfQ.8Fox-D8cJ8emScId5KI8Dq0HLVETinbzeG7DAFJgG6I"
+                },
+                {
+                    "name": "x-rtoken-id",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjg5OTQ0NzM4LCJleHAiOjE2OTA1NDk1Mzh9.3KsN5oH0LbQ8Jqf1c2_nsKtfuWbA3RyMBhf5pszTjF4",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "90b13a37-919b-45ca-9529-2c6238f725c3",
+            "colId": "80696ad5-5f38-42af-aeb4-5fa4ec122054",
+            "containerId": "",
+            "name": "Search Product",
+            "url": "http://localhost:3000/v1/api/product/search/",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2023-07-25T16:37:22.004Z",
+            "modified": "2023-07-25T16:37:22.004Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "ac37b405408e6646067cb230bbc729ec800583f106c000397249e4b72046fae627cda5102c865040ac12a0f35f29819b6709bab0cfaeb1f3f09f5a1992f90fc1"
+                },
+                {
+                    "name": "x-client-id",
+                    "value": "64b2041c9907f2ffefaa362f",
+                    "isDisabled": true
+                },
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjkwMjA3MTQzfQ.8Fox-D8cJ8emScId5KI8Dq0HLVETinbzeG7DAFJgG6I",
+                    "isDisabled": true
+                },
+                {
+                    "name": "x-rtoken-id",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjg5OTQ0NzM4LCJleHAiOjE2OTA1NDk1Mzh9.3KsN5oH0LbQ8Jqf1c2_nsKtfuWbA3RyMBhf5pszTjF4",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "0287106f-8799-4a73-ae68-8fb65b6ae16e",
+            "colId": "80696ad5-5f38-42af-aeb4-5fa4ec122054",
+            "containerId": "",
+            "name": "Get All Product",
+            "url": "http://localhost:3000/v1/api/product/",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2023-07-30T02:19:33.990Z",
+            "modified": "2023-07-30T02:19:33.990Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "ac37b405408e6646067cb230bbc729ec800583f106c000397249e4b72046fae627cda5102c865040ac12a0f35f29819b6709bab0cfaeb1f3f09f5a1992f90fc1"
+                },
+                {
+                    "name": "x-client-id",
+                    "value": "64b2041c9907f2ffefaa362f",
+                    "isDisabled": true
+                },
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjkwMjA3MTQzfQ.8Fox-D8cJ8emScId5KI8Dq0HLVETinbzeG7DAFJgG6I",
+                    "isDisabled": true
+                },
+                {
+                    "name": "x-rtoken-id",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjg5OTQ0NzM4LCJleHAiOjE2OTA1NDk1Mzh9.3KsN5oH0LbQ8Jqf1c2_nsKtfuWbA3RyMBhf5pszTjF4",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "0fc7e5c6-8af5-4445-a45f-ae64b58ab1a0",
+            "colId": "80696ad5-5f38-42af-aeb4-5fa4ec122054",
+            "containerId": "",
+            "name": "Get Product Detail",
+            "url": "http://localhost:3000/v1/api/product/64c5c762492ff2146b190d38",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2023-07-30T02:20:10.817Z",
+            "modified": "2023-07-30T02:20:10.817Z",
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "ac37b405408e6646067cb230bbc729ec800583f106c000397249e4b72046fae627cda5102c865040ac12a0f35f29819b6709bab0cfaeb1f3f09f5a1992f90fc1"
+                },
+                {
+                    "name": "x-client-id",
+                    "value": "64b2041c9907f2ffefaa362f",
+                    "isDisabled": true
+                },
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjkwMjA3MTQzfQ.8Fox-D8cJ8emScId5KI8Dq0HLVETinbzeG7DAFJgG6I",
+                    "isDisabled": true
+                },
+                {
+                    "name": "x-rtoken-id",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGIyMDQxYzk5MDdmMmZmZWZhYTM2MmYiLCJlbWFpbCI6Im5hbWRuaDA2MDJAZ21haWwuY29tIiwiaWF0IjoxNjg5OTQ0NzM4LCJleHAiOjE2OTA1NDk1Mzh9.3KsN5oH0LbQ8Jqf1c2_nsKtfuWbA3RyMBhf5pszTjF4",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
