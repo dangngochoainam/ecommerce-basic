@@ -24,6 +24,7 @@ const {
   removeNullOrUndefineValue,
   updateNestedObjectParser,
 } = require('../utils');
+const { insertInventory } = require('../models/repositories/inventory.repo');
 
 class ProductFactory {
   static productRegisterd = {};
@@ -129,7 +130,16 @@ class BaseProduct {
   }
 
   async createProduct(productId) {
-    return await baseProduct.create({ ...this, _id: productId });
+    const newProduct = await baseProduct.create({ ...this, _id: productId });
+
+    if (newProduct) {
+      await insertInventory({
+        productId: newProduct._id,
+        productShop: this.product_shop,
+        stock: this.product_quantity,
+      });
+    }
+    return newProduct;
   }
 
   async updateProduct(productId, bodyUpdate, productShop) {
