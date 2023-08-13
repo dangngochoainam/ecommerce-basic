@@ -7,6 +7,7 @@ const discountSchema = new Schema(
   {
     discount_name: { type: String, require: true },
     discount_description: { type: String, require: true },
+    discount_code: { type: String, require: true },
     discount_type: { type: String, default: 'fixed_amount' },
     discount_value: { type: Number, require: true },
     discount_start_date: { type: Date, require: true },
