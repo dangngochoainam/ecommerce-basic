@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { TypeApply, DiscountType } = require('../constanst/discount.constants');
 
 const DOCUMENT_NAME = 'Discount';
 const COLLECTION_NAME = 'discounts';
@@ -8,7 +9,7 @@ const discountSchema = new Schema(
     discount_name: { type: String, require: true },
     discount_description: { type: String, require: true },
     discount_code: { type: String, require: true },
-    discount_type: { type: String, default: 'fixed_amount' },
+    discount_type: { type: String, default: DiscountType.FIXED_AMOUNT },
     discount_value: { type: Number, require: true },
     discount_start_date: { type: Date, require: true },
     discount_end_date: { type: Date, require: true },
@@ -23,7 +24,7 @@ const discountSchema = new Schema(
     discount_applies_to: {
       type: String,
       require: true,
-      enum: ['all', 'specific'],
+      enum: [TypeApply.ALL, TypeApply.SPECIFIC],
     },
     discount_product_ids: { type: Array, default: [] }, // so san pham được áp dụng
   },
