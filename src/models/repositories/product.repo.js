@@ -98,6 +98,10 @@ const findProductDetail = async ({ product_id, select }) => {
   return results;
 };
 
+const findProductById = async ({ product_id }) => {
+  return await baseProduct.findById(product_id).lean();
+};
+
 const findByIdAndUpdate = async ({
   productId,
   productShop,
@@ -129,4 +133,5 @@ module.exports = {
   findAllProduct,
   findProductDetail,
   findByIdAndUpdate,
+  findProductById,
 };
