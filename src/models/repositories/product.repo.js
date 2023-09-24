@@ -7,7 +7,11 @@ const {
   electronic,
   furniture,
 } = require('../product.model');
-const { getSelectData, getUnSelectData } = require('../../utils');
+const {
+  getSelectData,
+  getUnSelectData,
+  convertStringToObjectId,
+} = require('../../utils');
 
 const queryProduct = async ({ query, limit, skip }) => {
   return await baseProduct
@@ -124,6 +128,22 @@ const findByIdAndUpdate = async ({
   return result;
 };
 
+const checkProductAvailableOnServer = async (products) => {
+  return Promise.all(
+    products.map(async (product) => {
+      const foundProduct = await findProductById({
+        product_id: product.productId,
+      });
+      if (foundProduct && foundProduct.product_quantity > product.quantity) {
+        return {
+          ...product,
+          price: foundProduct.product_price,
+        };
+      }
+    })
+  );
+};
+
 module.exports = {
   findAllDraftsForShop,
   publishProductByShop,
@@ -134,4 +154,5 @@ module.exports = {
   findProductDetail,
   findByIdAndUpdate,
   findProductById,
+  checkProductAvailableOnServer,
 };

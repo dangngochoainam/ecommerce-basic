@@ -63,6 +63,29 @@ class CartService {
     return await CartService.updateUserCartQuantity({ userId, product });
   }
 
+  /**
+   * PAYLOAD
+    {
+      "userId": 1001,
+      "shop_order_ids": [
+        {
+          "shopId": "64b2041c9907f2ffefaa362f",
+          "item_products": [
+            {
+              "productId": "64bbadeac421d45e10f32e45",
+              //check price trên db chứ kp trên payload
+              "price": 123,
+              "shopId": "64b2041c9907f2ffefaa362f",
+              "old_quantity": 3,
+              "quantity": 4
+            }
+          ],
+          "version": 100
+        }, ...
+      ]
+    }
+   */
+
   static async addToCartV2({ userId, shop_order_ids }) {
     const { productId, quantity, old_quantity } =
       shop_order_ids[0]?.item_products[0];
