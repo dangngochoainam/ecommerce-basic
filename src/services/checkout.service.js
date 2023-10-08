@@ -1,9 +1,11 @@
 const { BadRequestError } = require('../core/error.response');
+const { order } = require('../models/order.model');
 const { getCartById } = require('../models/repositories/cart.repo');
 const {
   checkProductAvailableOnServer,
 } = require('../models/repositories/product.repo');
 const { getDiscountAmount } = require('./discount.service');
+const { acquireLock, releaseLock } = require('./redis.service');
 
 class CheckoutService {
   // {
@@ -46,7 +48,7 @@ class CheckoutService {
   // }
 
   static async reviewCheckout({ cartId, userId, shop_order_ids }) {
-    const foundCart = getCartById({ userId });
+    const foundCart = getCartById({ cartId });
     if (!foundCart) {
       throw new BadRequestError('Cart not found');
     }
@@ -121,6 +123,66 @@ class CheckoutService {
       checkout_order,
     };
   }
+
+  static async orderByUser({
+    shop_order_ids,
+    cartId,
+    userId,
+    user_address = {},
+    user_payment = {},
+  }) {
+    const { checkout_order, new_shop_order_ids } = await this.reviewCheckout({
+      cartId,
+      userId,
+      shop_order_ids,
+    });
+
+    // check lai mot lan nua xem ton kho hay khong
+    // get new array product
+    const products = new_shop_order_ids.flatMap(
+      (order) => order.itemCheckout.item_products
+    );
+    const acquireProduct = [];
+    for (let i = 0; i < products.length; i++) {
+      const { productId, quantity } = products[i];
+      const keyLock = await acquireLock(productId, quantity, cartId);
+      acquireProduct.push(keyLock ? true : false);
+      if (keyLock) {
+        await releaseLock(keyLock);
+      }
+    }
+
+    if (acquireProduct.includes(false)) {
+      throw new BadRequestError(
+        'Mot so san pham da duoc cap nhat, vui long quay lai gio hang,...'
+      );
+    }
+
+    const newOrder = order.create({
+      order_userId: userId,
+      order_checkout: checkout_order,
+      order_shipping: user_address,
+      order_payment: user_payment,
+      order_products: new_shop_order_ids,
+    });
+
+    if (newOrder) {
+      // remove product in my cart
+    }
+    return newOrder;
+  }
+
+  // 1. Query Orders [User]
+  static async GetOrdersByUser() {}
+
+  // 1. Query One Orders [User]
+  static async GetOneOrderByUser() {}
+
+  // 1. Cancel Orders [User]
+  static async cancelOrderByUser() {}
+
+  // 1. Update Orders Status [Shop | Admin]
+  static async updateOrderStatusByShop() {}
 }
 
 module.exports = CheckoutService;
