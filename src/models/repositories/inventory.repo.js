@@ -1,3 +1,4 @@
+const { convertStringToObjectId } = require('../../utils');
 const { inventory } = require('../inventory.model');
 
 const insertInventory = async ({
@@ -14,4 +15,30 @@ const insertInventory = async ({
   });
 };
 
-module.exports = { insertInventory };
+const resevationInventory = async ({ productId, quantity, cartId }) => {
+  const query = {
+    inven_productId: convertStringToObjectId(productId),
+    inven_stock: { $gte: quantity },
+  };
+  const updateSet = {
+    $inc: {
+      inven_stock: -quantity,
+    },
+    $push: {
+      inven_reservations: {
+        quantity,
+        cardId,
+        createOn: new Date(),
+      },
+    },
+  };
+
+  const options = {
+    upsert: true,
+    new: true,
+  };
+
+  return await inventory.updateOne(query, updateSet, options);
+};
+
+module.exports = { insertInventory, resevationInventory };
