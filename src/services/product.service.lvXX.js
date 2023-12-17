@@ -25,6 +25,7 @@ const {
   updateNestedObjectParser,
 } = require('../utils');
 const { insertInventory } = require('../models/repositories/inventory.repo');
+const NotificationService = require('./notification.service');
 
 class ProductFactory {
   static productRegisterd = {};
@@ -133,12 +134,25 @@ class BaseProduct {
     const newProduct = await baseProduct.create({ ...this, _id: productId });
 
     if (newProduct) {
-      await insertInventory({
+      const invenData = await insertInventory({
         productId: newProduct._id,
         productShop: this.product_shop,
         stock: this.product_quantity,
       });
+      // add notification
+      NotificationService.pushNotiToSystem({
+        type: 'SHOP-001',
+        senderId: this.product_shop,
+        receivedId: 1,
+        options: {
+          shopName: this.product_shop,
+          productName: this.product_name,
+        },
+      })
+        .then((rs) => console.log(rs))
+        .catch((err) => console.log(err));
     }
+
     return newProduct;
   }
 
