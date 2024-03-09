@@ -24,9 +24,13 @@ const runProducer = async () => {
 
     const msg = 'a new product';
 
-    await channel.sendToQueue(queueResult.queue, Buffer.from(msg), {
-      expiration: '10000',
-    });
+    // 1.TTL
+    // await channel.sendToQueue(queueResult.queue, Buffer.from(msg), {
+    //   expiration: '10000',
+    // });
+
+    // 2. Logic error
+    await channel.sendToQueue(queueResult.queue, Buffer.from(msg));
 
     setTimeout(() => {
       connection.close();
