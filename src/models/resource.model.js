@@ -1,5 +1,7 @@
 'use strict';
 
+const { model, Schema } = require("mongoose");
+
 const DOCUMENT_NAME = 'Resource';
 const COLLECTION_NAME = 'Resources';
 

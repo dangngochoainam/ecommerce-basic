@@ -1,4 +1,3 @@
-const { authentication, authenticationV2 } = require('../../auth/authUtils');
 const { profiles, profile } = require('../../controllers/profile.controller');
 const grantAccess = require('../../middlewares/rbac');
 

@@ -1,5 +1,7 @@
 'use strict';
 
+const { model, Schema } = require("mongoose");
+
 const DOCUMENT_NAME = 'Role';
 const COLLECTION_NAME = 'Roles';
 

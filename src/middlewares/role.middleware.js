@@ -9,4 +9,4 @@ const grantList = [
   },
   { role: 'shop', resource: 'profile', action: 'read:own', attributes: '*' },
 ];
-module.exports = new AccessControl(grantList);
+module.exports = new AccessControl();
